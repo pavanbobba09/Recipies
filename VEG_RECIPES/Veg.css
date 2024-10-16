@@ -1,0 +1,185 @@
+:root{
+    --background-dark: #2d3548;
+    --text-light: rgba(255,255,255,0.6);
+    --text-lighter: rgba(255,255,255,0.9);
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 16px; /* Reduced from 24px to 16px */
+    --spacing-xl: 24px; /* Adjusted accordingly */
+    --spacing-xxl: 32px; /* Reduced from 64px to 32px */
+    --width-container: 1200px;
+}
+
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+body{
+    height: 100%;
+}
+
+.hero-section{
+    align-items: flex-start;
+    background-image: linear-gradient(15deg, #13293D 0%, #7899D4 150%);
+    display: flex;
+    min-height: 100vh; /* Ensure hero-section takes full viewport height */
+    justify-content: center;
+    padding: var(--spacing-xxl) var(--spacing-l); /* Reduced padding */
+}
+
+.card-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: var(--spacing-l); /* Reduced gap */
+    grid-row-gap: var(--spacing-l); /* Reduced gap */
+    max-width: var(--width-container);
+    width: 100%;
+}
+
+@media(min-width: 540px){
+    .card-grid{
+      grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media(min-width: 960px){
+    .card-grid{
+      grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+    }
+}
+
+.card{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Changed from 150% to 100% for square cards */
+    perspective: 1000px; /* Enable 3D space */
+}
+
+.card-checkbox {
+    display: none; /* Hide the checkbox */
+}
+
+.card-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Enable focus */
+    outline: none;
+}
+
+.card-label:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
+
+.card__inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    /* Ensure smooth flipping */
+}
+
+.card-checkbox:checked + .card-label .card__inner {
+    transform: rotateY(180deg);
+}
+
+.card__front,
+.card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--spacing-l);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card__front {
+    /* Front face styles */
+}
+
+.card__back {
+    background-color: var(--background-dark);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-l);
+    text-align: center;
+}
+
+.card__background{
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    width: 100%;
+    height: 100%;
+    transition: 
+      filter 200ms linear,
+      transform 200ms linear;
+}
+
+.card__inner:hover .card__background{
+    transform: scale(1.05) translateZ(0);
+}
+
+.card-grid:hover > .card:not(:hover) .card__background{
+    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+}
+
+.card__content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: var(--spacing-l);
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card__category{
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-s);
+    text-transform: uppercase;
+}
+
+.card__heading{
+    color: var(--text-lighter);
+    font-size: 1.4rem; /* Reduced font size from 1.9rem to 1.4rem */
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    /* Removed word-spacing to fix overflow */
+}
+
+.card__back-content h3 {
+    margin-bottom: var(--spacing-m);
+    font-size: 1.4rem; /* Adjusted for consistency */
+}
+
+.card__back-content p {
+    font-size: 0.9rem; /* Reduced font size for compactness */
+    line-height: 1.5;
+}
+
+/* Optional: Prevent text selection */
+.card, .card * {
+    user-select: none;
+}
