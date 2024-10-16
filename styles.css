@@ -1,0 +1,136 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('backround_image.jpg'); /* Add your background image here */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Ensures everything is centered on the page */
+}
+
+/* Heading Animation */
+.heading {
+    color: rgb(228, 144, 33);
+    font-size: 2.5rem;
+    margin-bottom: 10px; /* Moved text a bit higher */
+    animation: fadeIn 2s ease-in-out; /* Fading in animation for the heading */
+    margin-top: -50px; /* Move the heading higher on the page */
+}
+
+/* Subheading Animation */
+.subheading {
+    color: rgb(214, 205, 36);
+    font-size: 1.5rem;
+    margin-bottom: 30px; /* Move text slightly closer to the heading */
+    animation: slideUp 2s ease-out; /* Sliding up animation for the subheading */
+}
+
+/* Container for the boxes */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Increased gap between boxes for better spacing */
+}
+
+/* Box styling */
+.box {
+    width: 250px; /* Increased box size to make images bigger */
+    height: 250px;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8); /* Add slight transparency to the boxes */
+    transition: transform 0.4s ease-in-out; /* Transition for smooth hover effect */
+}
+
+/* Box hover effect */
+.box:hover {
+    transform: scale(1.1); /* Slight zoom-in effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow effect on hover */
+}
+
+/* Image styling inside the box */
+.box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for image hover effect */
+}
+
+/* Animated images on left and right */
+
+/* Left animation styling */
+.left-animation {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 250px; /* Increased size for the left animated image */
+    height: 250px; /* Adjust size for uniformity */
+    animation: float 4s ease-in-out infinite; /* Floating animation */
+}
+
+.left-animation img {
+    width: 100%;
+    height: 100%; /* Ensure the image fits the div */
+}
+
+/* Right animation styling */
+.right-animation {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 250px; /* Increased size for the right animated image */
+    height: 250px; /* Adjust size for uniformity */
+    animation: float 4s ease-in-out infinite; /* Floating animation */
+}
+
+.right-animation img {
+    width: 100%;
+    height: 100%; /* Ensure the image fits the div */
+}
+
+/* Floating animation keyframes */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px); /* Float up */
+    }
+    100% {
+        transform: translateY(0); /* Back to original position */
+    }
+}
+
+/* Keyframe animations */
+
+/* Heading fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Subheading slide-up animation */
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
